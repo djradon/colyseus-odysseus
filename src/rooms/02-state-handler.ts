@@ -1,7 +1,7 @@
 import { Room, Client } from "colyseus";
 import { Schema, type, MapSchema } from "@colyseus/schema";
 
-const STEP_SIZE = 50;
+const STEP_SIZE = 25;
 
 export class Player extends Schema {
     @type("number")
