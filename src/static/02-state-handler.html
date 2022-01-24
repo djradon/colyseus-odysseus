@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width" />
 
     <style>
-      body { font-family: Tahoma, Geneva, sans-serif; }
+      body { font-family: Tahoma, Geneva, sans-serif; font-size: 12px; }
     </style>
 
     <!-- colyseus.js client -->
@@ -12,10 +12,10 @@
 
     <style type="text/css">
       .player {
-        width: 100px;
-        height: 100px;
+        width: 50px;
+        height: 50px;
         position: absolute;
-        padding-top: 24px;
+        padding-top: 0px;
         box-sizing: border-box;
         left: 0;
         top: 0;
@@ -24,19 +24,6 @@
 
   </head>
   <body>
-    <h1>
-      <a href="https://github.com/colyseus/colyseus-examples"><img src="https://cdn.jsdelivr.net/gh/colyseus/colyseus@master/media/header.png" height="100" alt="colyseus" /></a>
-    </h1>
-
-    <p>This example shows how to use custom data structures in your room's state.</p>
-
-    <strong>commands</strong><br>
-
-    <button onclick="up()">up</button>
-    <button onclick="down()">down</button>
-    <br />
-    <button onclick="left()">left</button>
-    <button onclick="right()">right</button>
 
     <script>
         var host = window.document.location.host.replace(/:.*/, '');
@@ -53,10 +40,12 @@
             room.state.players.onAdd = function (player, sessionId) {
                 var dom = document.createElement("div");
                 dom.className = "player";
+                dom.style.backgroundImage = "url('images/stolen/hero.png')";
+                dom.style.backgroundSize = "contain"
                 dom.style.left = player.x + "px";
                 dom.style.top = player.y + "px";
-                dom.style.background = colors[Math.floor(Math.random() * colors.length)];
-                dom.innerText = "Player " + sessionId;
+                //dom.style.background = colors[Math.floor(Math.random() * colors.length)];
+                dom.innerText = "Voyager " + sessionId.substring(0,2);
 
                 player.onChange = function (changes) {
                     dom.style.left = player.x + "px";
@@ -112,5 +101,8 @@
 
 
     </script>
+    <div style="width:1579px ; height:957px;  background-image: url('images/stolen/map.png');" >
+        t
+    </div>
   </body>
 </html>

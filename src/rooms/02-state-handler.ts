@@ -1,12 +1,14 @@
 import { Room, Client } from "colyseus";
 import { Schema, type, MapSchema } from "@colyseus/schema";
 
+const STEP_SIZE = 50;
+
 export class Player extends Schema {
     @type("number")
-    x = Math.floor(Math.random() * 400);
+    x = Math.floor(Math.random() * 25) * STEP_SIZE;
 
     @type("number")
-    y = Math.floor(Math.random() * 400);
+    y = Math.floor(Math.random() * 10) * STEP_SIZE;
 }
 
 export class State extends Schema {
@@ -24,11 +26,12 @@ export class State extends Schema {
     }
 
     movePlayer (sessionId: string, movement: any) {
+        
         if (movement.x) {
-            this.players.get(sessionId).x += movement.x * 10;
+            this.players.get(sessionId).x += movement.x * STEP_SIZE;
 
         } else if (movement.y) {
-            this.players.get(sessionId).y += movement.y * 10;
+            this.players.get(sessionId).y += movement.y * STEP_SIZE;
         }
     }
 }
@@ -43,7 +46,9 @@ export class StateHandlerRoom extends Room<State> {
 
         this.onMessage("move", (client, data) => {
             console.log("StateHandlerRoom received message from", client.sessionId, ":", data);
-            this.state.movePlayer(client.sessionId, data);
+            setTimeout(() => {
+                this.state.movePlayer(client.sessionId, data);
+            }, 500)
         });
     }
 
