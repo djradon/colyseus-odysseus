@@ -15,7 +15,7 @@ import { ReconnectionRoom } from './rooms/04-reconnection';
 import { CustomLobbyRoom } from './rooms/07-custom-lobby-room';
 
 export default Arena({
-    getId: () => "Your Colyseus App",
+    getId: () => "Odysseus",
 
     // initializeTransport: (options) => new uWebSocketsTransport(options),
 
